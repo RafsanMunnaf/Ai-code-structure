@@ -1,1 +1,23 @@
-#write the required pakages here
+# -----------------------------------------------
+# Required Python Packages for AI Features
+# -----------------------------------------------
+# List all required packages here for local development and production.
+#
+# ⚠️ In production environments (especially servers or cloud),
+# use lightweight or headless versions of heavy libraries to reduce size and avoid GUI dependencies.
+#
+# ✅ Example Production-Grade Replacements:
+# - opencv-python        →  opencv-python-headless
+# - matplotlib           →  matplotlib (with caution, prefer headless environments)
+# - torch                →  torch==<version> (CPU-only if no GPU available)
+# - transformers         →  transformers (ensure compatible tokenizer/version)
+# - numpy, pandas        →  Required for data processing
+#
+# ✅ Installation Command:
+#   pip install -r requirements.txt
+#
+# ✅ Best Practices:
+# - Pin exact versions for production (e.g., numpy==1.24.2)
+# - Avoid unnecessary packages in production (e.g., jupyter, tkinter, etc.)
+# - Separate dev-only packages in `dev-requirements.txt` if needed
+# -----------------------------------------------

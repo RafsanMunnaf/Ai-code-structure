@@ -112,6 +112,7 @@ Return a JSON object with:
     )
     return json.loads(res.choices[0].message["content"])
 
+
 # === Main Runner ===
 if __name__ == "__main__":
     # Get user input for occasion and price range
@@ -136,5 +137,6 @@ if __name__ == "__main__":
             print(f"\nGift {idx}:")
             print(f"- Name: {gift.get('name','')}")
             print(f"- Reason: {gift.get('reason','')}")
+            print(f"- Price: {gift.get('price','')}")
             print(f"- URL: {gift.get('url','')}")
             print(f"- Image: {gift.get('image','')}")

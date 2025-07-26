@@ -109,19 +109,40 @@ def handle_query_response(response, products, index, embeddings):
         return search_results
     return None
 
-# === Main Functionality ===
-if __name__ == "__main__":
+def run(user_input):
+    # Robust run function for backend integration
     products = load_products()
-    embeddings, index = embed_product_descriptions(products)
-    
-    while True:
-        user_input = input("You: ")
-        if user_input.lower() == "exit" or user_input.lower() == "bye":
-            break
+    if not products:
+        error_msg = "No products found. Please check products.json."
+        print(error_msg)
+        return error_msg
+    try:
+        embeddings, index = embed_product_descriptions(products)
+    except Exception as e:
+        error_msg = f"Error generating embeddings: {e}"
+        print(error_msg)
+        return error_msg
+    try:
         response = chat_with_gpt(user_input)
         search_results = handle_query_response(response, products, index, embeddings)
         if search_results is not None:
-            print("Search Results:", json.dumps(search_results, indent=2))
-            break
-        else: 
+            result_json = json.dumps(search_results, indent=2)
+            print("Search Results:", result_json)
+            return result_json
+        else:
             print("Assistant:", response)
+            return response
+    except Exception as e:
+        error_msg = f"Error during chat or search: {e}"
+        print(error_msg)
+        return error_msg
+
+# === Main Functionality ===
+if __name__ == "__main__":
+    print("Welcome to the Gift Recommendation Assistant! (type 'exit' or 'bye' to quit)")
+    while True:
+        user_input = input("You: ")
+        if user_input.lower() in ("exit", "bye"):
+            print("Goodbye!")
+            break
+        run(user_input)

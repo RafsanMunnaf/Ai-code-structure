@@ -123,4 +123,5 @@ if __name__ == "__main__":
         if search_results is not None:
             print("Search Results:", json.dumps(search_results, indent=2))
             break
-        else:
+        else: 
+            print("Assistant:", response)

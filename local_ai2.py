@@ -1,5 +1,5 @@
 
-curated  picks code
+# curated  picks code
 
  
 import openai

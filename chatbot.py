@@ -34,7 +34,7 @@ def embed_product_descriptions(products):
             embeddings = pickle.load(f)
         return embeddings, index
     # If not, create embeddings
-    response = openai.embeddings.create(
+    response = openai.Embedding.create(
         model="text-embedding-3-small",
         input=descriptions
     )
@@ -53,7 +53,7 @@ def embed_product_descriptions(products):
 # === Semantic Search for products ===
 def semantic_search(query, products, index=None, embeddings=None):
     # Always generate query embedding
-    response = openai.embeddings.create(
+    response = openai.Embedding.create(
         model="text-embedding-3-small",
         input=[query]
     )
@@ -87,7 +87,7 @@ Messages.append({"role": "system",
 # === AI Chatbot ===
 def chat_with_gpt(prompt):
     Messages.append({"role": "user", "content": prompt})
-    response = openai.chat.completions.create(
+    response = openai.ChatCompletion.create(
         model="gpt-4",
         messages=Messages,
         temperature=0.7

@@ -12,6 +12,8 @@ load_dotenv()
 # === Configuration ===
 openai.api_key = os.getenv("OPENAI_API_KEY")
 
+
+#--------------------------------Remove------------------------------------------
 # === Product Data ===
 def load_products():
     try:
@@ -21,6 +23,10 @@ def load_products():
     except FileNotFoundError:
         print("Error: products.json file not found.")
         return []
+    
+    
+PRODUCT = load_products()
+# --------------------------------------------------------------------------------
 
 # === Embedding ===
 def embed_product_descriptions(products):
@@ -109,11 +115,9 @@ def handle_query_response(response, products, index, embeddings):
         return search_results
     return None
 
-def run(user_input):
-    # Robust run function for backend integration
-    products = load_products()
+def run(user_input, products=None):
     if not products:
-        error_msg = "No products found. Please check products.json."
+        error_msg = "No products found."
         print(error_msg)
         return error_msg
     try:
@@ -145,4 +149,4 @@ if __name__ == "__main__":
         if user_input.lower() in ("exit", "bye"):
             print("Goodbye!")
             break
-        run(user_input)
+        run(user_input, PRODUCT)

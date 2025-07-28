@@ -115,7 +115,22 @@ def handle_query_response(response, products, index, embeddings):
         return search_results
     return None
 
-def run(user_input, products=None):
+def run(user_input, products, flag=False):
+    if flag:
+        # Delete index folder if it exists
+        index_dir = "index"
+        if os.path.exists(index_dir):
+            # Delete files in the directory first
+            for filename in os.listdir(index_dir):
+                file_path = os.path.join(index_dir, filename)
+                if os.path.isfile(file_path):
+                    os.remove(file_path)
+            # Remove the directory
+            os.rmdir(index_dir)
+            print(f"Index folder '{index_dir}' deleted successfully.")
+        else:
+            print(f"Index folder '{index_dir}' does not exist.")
+            
     if not products:
         error_msg = "No products found."
         print(error_msg)
@@ -149,4 +164,4 @@ if __name__ == "__main__":
         if user_input.lower() in ("exit", "bye"):
             print("Goodbye!")
             break
-        run(user_input, PRODUCT)
+        run(user_input, PRODUCT, flag=False)

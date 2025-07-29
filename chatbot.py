@@ -87,6 +87,7 @@ Messages.append({"role": "system",
                  The gift should be relevant to the occasion and budget specified by the user.\n
                  At the end, you must strictly output only the query text for semantic search, with absolutely no other text, letters, or characters before it. The output must start with "Query:" and nothing else. The format is: "Query: Find a gift for [occasion] for [relationship] within [budget] and [user preferences]." Only this formatted output will be returned, with no additional explanation, greeting, or text before or after.\n
                  It only answers questions related to gift recommendations and does not provide any other information or assistance. Suggest to contact with the specialized one. \n
+                 Always provide responses in JSON format with the follow this structure strictly
                 """
                 })
 

@@ -106,9 +106,11 @@ Return a JSON object with:
 }}
 """
     res = openai.ChatCompletion.create(
-        model="gpt-4",
+        model="gpt-4o",
         messages=[{"role": "user", "content": prompt}],
-        temperature=0.7
+        max_tokens=16000
+        temperature=0.5
+
     )
     return json.loads(res.choices[0].message["content"])
 
